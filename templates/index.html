@@ -1,0 +1,982 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>実験2 アンケート</title>
+    <style>
+        .questionnaire tr {
+            display: table;
+        }
+
+        .left_radio {
+            padding: 0px;
+            padding-right: 3px;
+            width: 82px;
+            text-align: right;
+        }
+
+        .middle_radio {
+            padding: 0px;
+            width: 20px;
+            text-align: center;
+        }
+
+        .right_radio {
+            padding: 0px;
+            width: 20px;
+            text-align: center;
+        }
+
+        .line {
+            padding: 0px;
+            padding-bottom: 2px;
+            width: 135px;
+        }
+
+        .label_radio {
+            margin-right: 40px;
+        }
+
+        .form_radio_other {
+            width: 410px;
+        }
+
+        hr {
+            margin-bottom: 9px;
+        }
+
+        input[type="radio"] {
+            margin: 0px;
+        }
+
+        td {
+            padding: 0px;
+        }
+
+        button {
+            padding: 10px;
+            margin-bottom: 10px;
+        }
+
+        h2 {
+            font-size: 20px;
+            font-weight: bold;
+        }
+    </style>
+</head>
+
+<body>
+    <h1>実験2　アンケート調査</h1>
+    <h2>(1) 以下のアンケートにお答えください。</h2>
+    <br>
+    <form id="surveyForm" class="question" method="POST" target="hidden_iframe" onsubmit="submitted=true;">
+        <label>
+            <div style="font-size: 20px;" class="form_label">Q1. 観察者IDを入力してください。</div>
+            <input id="reader_id" type="text" autocomplete="off" class="form_field" required>
+        </label>
+        <br>
+        <br>
+        <br>
+        <div style="font-size: 20px;" class="form_label">Q2. ご専門の診療科を選んで下さい。</div>
+        <div class="form_radio-wrapper">
+            <label class="label_radio">
+                <input type="radio" id="department" name="department" value="放射線科" class="form_radio" required>
+                <span class="radio_span">放射線科</span>
+            </label>
+            <label class="label_radio">
+                <input type="radio" id="department" name="department" value="内科(呼吸器)" class="form_radio" required>
+                <span class="radio_span">内科(呼吸器)</span>
+            </label>
+            <label class="label_radio">
+                <input type="radio" id="department" name="department" value="内科(消化器)" class="form_radio" required>
+                <span class="radio_span">内科(消化器)</span>
+            </label>
+            <label class="label_radio">
+                <input type="radio" id="department" name="department" value="内科(循環器)" class="form_radio" required>
+                <span class="radio_span">内科(循環器)</span>
+            </label>
+            <label class="label_radio">
+                <input type="radio" id="department" name="department" value="内科(その他)" class="form_radio" required>
+                <span class="radio_span">内科(その他)</span>
+            </label>
+            <label class="label_radio">
+                <input type="radio" id="department" name="department" value="外科(呼吸器)" class="form_radio" required>
+                <span class="radio_span">外科(呼吸器)</span>
+            </label>
+            <label class="label_radio">
+                <input type="radio" id="department" name="department" value="外科(消化器)" class="form_radio" required>
+                <span class="radio_span">外科(消化器)</span>
+            </label>
+            <label class="label_radio">
+                <input type="radio" id="department" name="department" value="外科(循環器)" class="form_radio" required>
+                <span class="radio_span">外科(循環器)</span>
+            </label>
+            <label class="label_radio">
+                <input type="radio" id="department" name="department" value="外科(その他)" class="form_radio" required>
+                <span class="radio_span">外科(その他)</span>
+            </label>
+            <label class="label_radio">
+                <input type="radio" id="department" name="department" value="その他" class="form_radio" required>
+                <span class="radio_span">その他</span>
+            </label>
+        </div>
+        <br><br>
+
+        <label>
+            <div style="font-size: 20px;" class="form_label">Q3.
+                上記の質問で、その他・内科(その他)・外科(その他)を選択された方は、具体的な診療科をご記入ください。他の選択肢を選んだ方は「なし」と入力してください。
+            </div>
+            <input id="department_other" name="department_other" type="text" autocomplete="off" class="form_field"
+                required>
+        </label>
+        <br>
+        <br>
+        <br>
+        <label>
+            <div style="font-size: 20px;" class="form_label">Q4. 医師になってから何年目ですか？</div>
+            <input id="doctor_year" name="doctor_year" type="text" autocomplete="off" class="form_field" required> 年目
+        </label>
+        <br>
+        <br>
+        <br>
+        <label>
+            <div style="font-size: 20px;" class="form_label">Q5. 現在の施設での勤続年数は何年ですか？</div>
+            <input id="facility_year" name="facility_year" type="text" autocomplete="off" class="form_field" required> 年
+        </label>
+        <br>
+        <br>
+        <br>
+        <label>
+            <div style="font-size: 20px;" class="form_label">Q6. 現在までのおおよその読影枚数/症例数はどのくらいですか？</div>
+            <input id="images_num" name="images_num" type="text" autocomplete="off" class="form_field" required> 症例
+        </label>
+        <br>
+        <br>
+        <br>
+        <div style="font-size: 20px;" class="form_label">Q7. 現在の役職を選んでください。</div>
+        <div class="form_radio-wrapper">
+            <label class="label_radio">
+                <input type="radio" id="position" name="position" value="部長" class="form_radio"
+                    onclick="changeDisabled()" required>
+                <span class="radio_span">部長</span>
+            </label>
+            <label class="label_radio">
+                <input type="radio" id="position" name="position" value="副部長" class="form_radio"
+                    onclick="changeDisabled()" required>
+                <span class="radio_span">副部長</span>
+            </label>
+            <label class="label_radio">
+                <input type="radio" id="position" name="position" value="医長" class="form_radio"
+                    onclick="changeDisabled()" required>
+                <span class="radio_span">医長</span>
+            </label>
+            <label class="label_radio">
+                <input type="radio" id="position" name="position" value="副医長" class="form_radio"
+                    onclick="changeDisabled()" required>
+                <span class="radio_span">副医長</span>
+            </label>
+            <label class="">
+                <input type="radio" id="position" name="position" value="__other_option__" class="form_radio"
+                    onclick="changeDisabled()" required>
+                <span class="radio_span">その他</span>
+            </label>
+            <span style="display: inline;">
+                <label class="label_radio_other">
+                    <input type="text" id="position_text" name="position.other_option_response" class="form_radio_other"
+                        autocomplete="off" placeholder="その他を選択された方は具体的な役職をこちらに記入してください。">
+                </label>
+            </span>
+
+        </div>
+        <br><br>
+
+        <div style="font-size: 20px;" class="form_label">Q8. 自分のスキルを自分で評価するとどの程度でしょうか。下記から一つずつ選択下さい。</div>
+        <div class="form_radio-wrapper">
+            <label class="label_radio">
+                <input type="radio" id="skill_1" name="skill_1" value="まだ低い" class="form_radio" required>
+                <span class="radio_span">まだ低い</span>
+            </label>
+            <label class="label_radio">
+                <input type="radio" id="skill_1" name="skill_1" value="これから" class="form_radio" required>
+                <span class="radio_span">これから</span>
+            </label>
+            <label class="label_radio">
+                <input type="radio" id="skill_1" name="skill_1" value="ふつう" class="form_radio" required>
+                <span class="radio_span">ふつう</span>
+            </label>
+            <label class="label_radio">
+                <input type="radio" id="skill_1" name="skill_1" value="できる" class="form_radio" required>
+                <span class="radio_span">できる</span>
+            </label>
+            <label class="label_radio">
+                <input type="radio" id="skill_1" name="skill_1" value="かなり高い" class="form_radio" required>
+                <span class="radio_span">かなり高い</span>
+            </label>
+            <br>
+            <br>
+            <label class="label_radio">
+                <input type="radio" id="skill_2" name="skill_2" value="下位5%" class="form_radio" required>
+                <span class="radio_span">下位5%</span>
+            </label>
+            <label class="label_radio">
+                <input type="radio" id="skill_2" name="skill_2" value="5~35%" class="form_radio" required>
+                <span class="radio_span">5~35%</span>
+            </label>
+            <label class="label_radio">
+                <input type="radio" id="skill_2" name="skill_2" value="35~65%" class="form_radio" required>
+                <span class="radio_span">35~65%</span>
+            </label>
+            <label class="label_radio">
+                <input type="radio" id="skill_2" name="skill_2" value="65~95%" class="form_radio" required>
+                <span class="radio_span">65~95%</span>
+            </label>
+            <label class="label_radio">
+                <input type="radio" id="skill_2" name="skill_2" value="上位5%" class="form_radio" required>
+                <span class="radio_span">上位5%</span>
+            </label>
+        </div>
+        <br>
+        <br>
+
+        <h2>(2) 以下の1から10までの表現があなた自身にどのくらい当てはまるかについて、7つの選択肢のうちもっとも適切なものを選択して下さい。あまりじっくり考え過ぎずに直感的に判断して下さい。</h2>
+        <br>
+        <div style="font-size: 20px;" class="form_label">私は自分自身のことを・・・・</div>
+        <div style="font-size: 20px;" class="form_label">1. 活発で、外交的だと思う</div>
+        <br>
+        <table class="questionnaire" border="0" align="center" width="1150" margin="100">
+            <tr style="font-size:12px" ; align="center">
+            <tr style="font-size:14px" ; align="center">
+                <td width="150">全く違うと思う</td>
+                <td width="5px"></td>
+                <td width="150">おおよそ違うと思う</td>
+                <td width="5px"></td>
+                <td width="150">少し違うと思う</td>
+                <td width="5px"></td>
+                <td width="150">どちらでもない</td>
+                <td width="5px"></td>
+                <td width="150">少しそう思う</td>
+                <td width="5px"></td>
+                <td width="150">まあまあそう思う</td>
+                <td width="5px"></td>
+                <td width="150">強くそう思う</td>
+            </tr>
+            <tr align="center">
+                <div class="radio">
+                    <td class="left_radio"><input type="radio" id="question_1" name="question_1" value="全く違うと思う"
+                            required></td>
+                    <td class="line">
+                        <hr>
+                    </td>
+                    <td class="middle_radio"><input type="radio" id="question_1" name="question_1" value="おおよそ違うと思う"
+                            required>
+                    </td>
+                    <td class="line">
+                        <hr>
+                    </td>
+                    <td class="middle_radio"><input type="radio" id="question_1" name="question_1" value="少し違うと思う"
+                            required></td>
+                    <td class="line">
+                        <hr>
+                    </td>
+                    <td class="middle_radio"><input type="radio" id="question_1" name="question_1" value="どちらでもない"
+                            required></td>
+                    <td class="line">
+                        <hr>
+                    </td>
+                    <td class="middle_radio"><input type="radio" id="question_1" name="question_1" value="少しそう思う"
+                            required></td>
+                    <td class="line">
+                        <hr>
+                    </td>
+                    <td class="middle_radio"><input type="radio" id="question_1" name="question_1" value="まあまあそう思う"
+                            required></td>
+                    <td class="line">
+                        <hr>
+                    </td>
+                    <td class="right_radio"><input type="radio" id="question_1" name="question_1" value="強くそう思う"
+                            required></td>
+                </div>
+            </tr>
+        </table><br><br><br>
+
+        <div style="font-size: 20px;" class="form_label">2. 他人に不満をもち、もめごとを起こしやすいと思う</div>
+        <br>
+        <table class="questionnaire" border="0" align="center" width="1150" margin="100">
+            <tr style="font-size:12px" ; align="center">
+            <tr style="font-size:14px" ; align="center">
+                <td width="150">全く違うと思う</td>
+                <td width="5px"></td>
+                <td width="150">おおよそ違うと思う</td>
+                <td width="5px"></td>
+                <td width="150">少し違うと思う</td>
+                <td width="5px"></td>
+                <td width="150">どちらでもない</td>
+                <td width="5px"></td>
+                <td width="150">少しそう思う</td>
+                <td width="5px"></td>
+                <td width="150">まあまあそう思う</td>
+                <td width="5px"></td>
+                <td width="150">強くそう思う</td>
+            </tr>
+            <tr align="center">
+                <div class="radio">
+                    <td class="left_radio"><input type="radio" id="question_2" name="question_2" value="全く違うと思う"
+                            required></td>
+                    <td class="line">
+                        <hr>
+                    </td>
+                    <td class="middle_radio"><input type="radio" id="question_2" name="question_2" value="おおよそ違うと思う"
+                            required>
+                    </td>
+                    <td class="line">
+                        <hr>
+                    </td>
+                    <td class="middle_radio"><input type="radio" id="question_2" name="question_2" value="少し違うと思う"
+                            required></td>
+                    <td class="line">
+                        <hr>
+                    </td>
+                    <td class="middle_radio"><input type="radio" id="question_2" name="question_2" value="どちらでもない"
+                            required></td>
+                    <td class="line">
+                        <hr>
+                    </td>
+                    <td class="middle_radio"><input type="radio" id="question_2" name="question_2" value="少しそう思う"
+                            required></td>
+                    <td class="line">
+                        <hr>
+                    </td>
+                    <td class="middle_radio"><input type="radio" id="question_2" name="question_2" value="まあまあそう思う"
+                            required></td>
+                    <td class="line">
+                        <hr>
+                    </td>
+                    <td class="right_radio"><input type="radio" id="question_2" name="question_2" value="強くそう思う"
+                            required></td>
+                </div>
+            </tr>
+        </table><br><br><br>
+
+        <div style="font-size: 20px;" class="form_label">3. しっかししていて、自分に厳しいと思う</div>
+        <br>
+        <table class="questionnaire" border="0" align="center" width="1150" margin="100">
+            <tr style="font-size:12px" ; align="center">
+            <tr style="font-size:14px" ; align="center">
+                <td width="150">全く違うと思う</td>
+                <td width="5px"></td>
+                <td width="150">おおよそ違うと思う</td>
+                <td width="5px"></td>
+                <td width="150">少し違うと思う</td>
+                <td width="5px"></td>
+                <td width="150">どちらでもない</td>
+                <td width="5px"></td>
+                <td width="150">少しそう思う</td>
+                <td width="5px"></td>
+                <td width="150">まあまあそう思う</td>
+                <td width="5px"></td>
+                <td width="150">強くそう思う</td>
+            </tr>
+            <tr align="center">
+                <div class="radio">
+                    <td class="left_radio"><input type="radio" id="question_3" name="question_3" value="全く違うと思う"
+                            required></td>
+                    <td class="line">
+                        <hr>
+                    </td>
+                    <td class="middle_radio"><input type="radio" id="question_3" name="question_3" value="おおよそ違うと思う"
+                            required>
+                    </td>
+                    <td class="line">
+                        <hr>
+                    </td>
+                    <td class="middle_radio"><input type="radio" id="question_3" name="question_3" value="少し違うと思う"
+                            required></td>
+                    <td class="line">
+                        <hr>
+                    </td>
+                    <td class="middle_radio"><input type="radio" id="question_3" name="question_3" value="どちらでもない"
+                            required></td>
+                    <td class="line">
+                        <hr>
+                    </td>
+                    <td class="middle_radio"><input type="radio" id="question_3" name="question_3" value="少しそう思う"
+                            required></td>
+                    <td class="line">
+                        <hr>
+                    </td>
+                    <td class="middle_radio"><input type="radio" id="question_3" name="question_3" value="まあまあそう思う"
+                            required></td>
+                    <td class="line">
+                        <hr>
+                    </td>
+                    <td class="right_radio"><input type="radio" id="question_3" name="question_3" value="強くそう思う"
+                            required></td>
+                </div>
+            </tr>
+        </table><br><br><br>
+
+        <div style="font-size: 20px;" class="form_label">4. 心配性で、うろたえやすいと思う</div>
+        <br>
+        <table class="questionnaire" border="0" align="center" width="1150" margin="100">
+            <tr style="font-size:12px" ; align="center">
+            <tr style="font-size:14px" ; align="center">
+                <td width="150">全く違うと思う</td>
+                <td width="5px"></td>
+                <td width="150">おおよそ違うと思う</td>
+                <td width="5px"></td>
+                <td width="150">少し違うと思う</td>
+                <td width="5px"></td>
+                <td width="150">どちらでもない</td>
+                <td width="5px"></td>
+                <td width="150">少しそう思う</td>
+                <td width="5px"></td>
+                <td width="150">まあまあそう思う</td>
+                <td width="5px"></td>
+                <td width="150">強くそう思う</td>
+            </tr>
+            <tr align="center">
+                <div class="radio">
+                    <td class="left_radio"><input type="radio" id="question_4" name="question_4" value="全く違うと思う"
+                            required></td>
+                    <td class="line">
+                        <hr>
+                    </td>
+                    <td class="middle_radio"><input type="radio" id="question_4" name="question_4" value="おおよそ違うと思う"
+                            required>
+                    </td>
+                    <td class="line">
+                        <hr>
+                    </td>
+                    <td class="middle_radio"><input type="radio" id="question_4" name="question_4" value="少し違うと思う"
+                            required></td>
+                    <td class="line">
+                        <hr>
+                    </td>
+                    <td class="middle_radio"><input type="radio" id="question_4" name="question_4" value="どちらでもない"
+                            required></td>
+                    <td class="line">
+                        <hr>
+                    </td>
+                    <td class="middle_radio"><input type="radio" id="question_4" name="question_4" value="少しそう思う"
+                            required></td>
+                    <td class="line">
+                        <hr>
+                    </td>
+                    <td class="middle_radio"><input type="radio" id="question_4" name="question_4" value="まあまあそう思う"
+                            required></td>
+                    <td class="line">
+                        <hr>
+                    </td>
+                    <td class="right_radio"><input type="radio" id="question_4" name="question_4" value="強くそう思う"
+                            required></td>
+                </div>
+            </tr>
+        </table><br><br><br>
+
+        <div style="font-size: 20px;" class="form_label">5. 新しいことが好きで、変わった考えをもつと思う</div>
+        <br>
+        <table class="questionnaire" border="0" align="center" width="1150" margin="100">
+            <tr style="font-size:12px" ; align="center">
+            <tr style="font-size:14px" ; align="center">
+                <td width="150">全く違うと思う</td>
+                <td width="5px"></td>
+                <td width="150">おおよそ違うと思う</td>
+                <td width="5px"></td>
+                <td width="150">少し違うと思う</td>
+                <td width="5px"></td>
+                <td width="150">どちらでもない</td>
+                <td width="5px"></td>
+                <td width="150">少しそう思う</td>
+                <td width="5px"></td>
+                <td width="150">まあまあそう思う</td>
+                <td width="5px"></td>
+                <td width="150">強くそう思う</td>
+            </tr>
+            <tr align="center">
+                <div class="radio">
+                    <td class="left_radio"><input type="radio" id="question_5" name="question_5" value="全く違うと思う"
+                            required></td>
+                    <td class="line">
+                        <hr>
+                    </td>
+                    <td class="middle_radio"><input type="radio" id="question_5" name="question_5" value="おおよそ違うと思う"
+                            required>
+                    </td>
+                    <td class="line">
+                        <hr>
+                    </td>
+                    <td class="middle_radio"><input type="radio" id="question_5" name="question_5" value="少し違うと思う"
+                            required></td>
+                    <td class="line">
+                        <hr>
+                    </td>
+                    <td class="middle_radio"><input type="radio" id="question_5" name="question_5" value="どちらでもない"
+                            required></td>
+                    <td class="line">
+                        <hr>
+                    </td>
+                    <td class="middle_radio"><input type="radio" id="question_5" name="question_5" value="少しそう思う"
+                            required></td>
+                    <td class="line">
+                        <hr>
+                    </td>
+                    <td class="middle_radio"><input type="radio" id="question_5" name="question_5" value="まあまあそう思う"
+                            required></td>
+                    <td class="line">
+                        <hr>
+                    </td>
+                    <td class="right_radio"><input type="radio" id="question_5" name="question_5" value="強くそう思う"
+                            required></td>
+                </div>
+            </tr>
+        </table><br><br><br>
+
+        <div style="font-size: 20px;" class="form_label">6. ひかえめで、おとなしいと思う</div>
+        <br>
+        <table class="questionnaire" border="0" align="center" width="1150" margin="100">
+            <tr style="font-size:12px" ; align="center">
+            <tr style="font-size:14px" ; align="center">
+                <td width="150">全く違うと思う</td>
+                <td width="5px"></td>
+                <td width="150">おおよそ違うと思う</td>
+                <td width="5px"></td>
+                <td width="150">少し違うと思う</td>
+                <td width="5px"></td>
+                <td width="150">どちらでもない</td>
+                <td width="5px"></td>
+                <td width="150">少しそう思う</td>
+                <td width="5px"></td>
+                <td width="150">まあまあそう思う</td>
+                <td width="5px"></td>
+                <td width="150">強くそう思う</td>
+            </tr>
+            <tr align="center">
+                <div class="radio">
+                    <td class="left_radio"><input type="radio" id="question_6" name="question_6" value="全く違うと思う"
+                            required></td>
+                    <td class="line">
+                        <hr>
+                    </td>
+                    <td class="middle_radio"><input type="radio" id="question_6" name="question_6" value="おおよそ違うと思う"
+                            required>
+                    </td>
+                    <td class="line">
+                        <hr>
+                    </td>
+                    <td class="middle_radio"><input type="radio" id="question_6" name="question_6" value="少し違うと思う"
+                            required></td>
+                    <td class="line">
+                        <hr>
+                    </td>
+                    <td class="middle_radio"><input type="radio" id="question_6" name="question_6" value="どちらでもない"
+                            required></td>
+                    <td class="line">
+                        <hr>
+                    </td>
+                    <td class="middle_radio"><input type="radio" id="question_6" name="question_6" value="少しそう思う"
+                            required></td>
+                    <td class="line">
+                        <hr>
+                    </td>
+                    <td class="middle_radio"><input type="radio" id="question_6" name="question_6" value="まあまあそう思う"
+                            required></td>
+                    <td class="line">
+                        <hr>
+                    </td>
+                    <td class="right_radio"><input type="radio" id="question_6" name="question_6" value="強くそう思う"
+                            required></td>
+                </div>
+            </tr>
+        </table><br><br><br>
+
+        <div style="font-size: 20px;" class="form_label">7. 人に気をつかう、やさしい人間だと思う</div>
+        <br>
+        <table class="questionnaire" border="0" align="center" width="1150" margin="100">
+            <tr style="font-size:12px" ; align="center">
+            <tr style="font-size:14px" ; align="center">
+                <td width="150">全く違うと思う</td>
+                <td width="5px"></td>
+                <td width="150">おおよそ違うと思う</td>
+                <td width="5px"></td>
+                <td width="150">少し違うと思う</td>
+                <td width="5px"></td>
+                <td width="150">どちらでもない</td>
+                <td width="5px"></td>
+                <td width="150">少しそう思う</td>
+                <td width="5px"></td>
+                <td width="150">まあまあそう思う</td>
+                <td width="5px"></td>
+                <td width="150">強くそう思う</td>
+            </tr>
+            <tr align="center">
+                <div class="radio">
+                    <td class="left_radio"><input type="radio" id="question_7" name="question_7" value="全く違うと思う"
+                            required></td>
+                    <td class="line">
+                        <hr>
+                    </td>
+                    <td class="middle_radio"><input type="radio" id="question_7" name="question_7" value="おおよそ違うと思う"
+                            required>
+                    </td>
+                    <td class="line">
+                        <hr>
+                    </td>
+                    <td class="middle_radio"><input type="radio" id="question_7" name="question_7" value="少し違うと思う"
+                            required></td>
+                    <td class="line">
+                        <hr>
+                    </td>
+                    <td class="middle_radio"><input type="radio" id="question_7" name="question_7" value="どちらでもない"
+                            required></td>
+                    <td class="line">
+                        <hr>
+                    </td>
+                    <td class="middle_radio"><input type="radio" id="question_7" name="question_7" value="少しそう思う"
+                            required></td>
+                    <td class="line">
+                        <hr>
+                    </td>
+                    <td class="middle_radio"><input type="radio" id="question_7" name="question_7" value="まあまあそう思う"
+                            required></td>
+                    <td class="line">
+                        <hr>
+                    </td>
+                    <td class="right_radio"><input type="radio" id="question_7" name="question_7" value="強くそう思う"
+                            required></td>
+                </div>
+            </tr>
+        </table><br><br><br>
+
+        <div style="font-size: 20px;" class="form_label">8. だらしなく、うっかりしていると思う</div>
+        <br>
+        <table class="questionnaire" border="0" align="center" width="1150" margin="100">
+            <tr style="font-size:12px" ; align="center">
+            <tr style="font-size:14px" ; align="center">
+                <td width="150">全く違うと思う</td>
+                <td width="5px"></td>
+                <td width="150">おおよそ違うと思う</td>
+                <td width="5px"></td>
+                <td width="150">少し違うと思う</td>
+                <td width="5px"></td>
+                <td width="150">どちらでもない</td>
+                <td width="5px"></td>
+                <td width="150">少しそう思う</td>
+                <td width="5px"></td>
+                <td width="150">まあまあそう思う</td>
+                <td width="5px"></td>
+                <td width="150">強くそう思う</td>
+            </tr>
+            <tr align="center">
+                <div class="radio">
+                    <td class="left_radio"><input type="radio" id="question_8" name="question_8" value="全く違うと思う"
+                            required></td>
+                    <td class="line">
+                        <hr>
+                    </td>
+                    <td class="middle_radio"><input type="radio" id="question_8" name="question_8" value="おおよそ違うと思う"
+                            required>
+                    </td>
+                    <td class="line">
+                        <hr>
+                    </td>
+                    <td class="middle_radio"><input type="radio" id="question_8" name="question_8" value="少し違うと思う"
+                            required></td>
+                    <td class="line">
+                        <hr>
+                    </td>
+                    <td class="middle_radio"><input type="radio" id="question_8" name="question_8" value="どちらでもない"
+                            required></td>
+                    <td class="line">
+                        <hr>
+                    </td>
+                    <td class="middle_radio"><input type="radio" id="question_8" name="question_8" value="少しそう思う"
+                            required></td>
+                    <td class="line">
+                        <hr>
+                    </td>
+                    <td class="middle_radio"><input type="radio" id="question_8" name="question_8" value="まあまあそう思う"
+                            required></td>
+                    <td class="line">
+                        <hr>
+                    </td>
+                    <td class="right_radio"><input type="radio" id="question_8" name="question_8" value="強くそう思う"
+                            required></td>
+                </div>
+            </tr>
+        </table><br><br><br>
+
+        <div style="font-size: 20px;" class="form_label">9. 冷静で、気分が安定していると思う</div>
+        <br>
+        <table class="questionnaire" border="0" align="center" width="1150" margin="100">
+            <tr style="font-size:12px" ; align="center">
+            <tr style="font-size:14px" ; align="center">
+                <td width="150">全く違うと思う</td>
+                <td width="5px"></td>
+                <td width="150">おおよそ違うと思う</td>
+                <td width="5px"></td>
+                <td width="150">少し違うと思う</td>
+                <td width="5px"></td>
+                <td width="150">どちらでもない</td>
+                <td width="5px"></td>
+                <td width="150">少しそう思う</td>
+                <td width="5px"></td>
+                <td width="150">まあまあそう思う</td>
+                <td width="5px"></td>
+                <td width="150">強くそう思う</td>
+            </tr>
+            <tr align="center">
+                <div class="radio">
+                    <td class="left_radio"><input type="radio" id="question_9" name="question_9" value="全く違うと思う"
+                            required></td>
+                    <td class="line">
+                        <hr>
+                    </td>
+                    <td class="middle_radio"><input type="radio" id="question_9" name="question_9" value="おおよそ違うと思う"
+                            required>
+                    </td>
+                    <td class="line">
+                        <hr>
+                    </td>
+                    <td class="middle_radio"><input type="radio" id="question_9" name="question_9" value="少し違うと思う"
+                            required></td>
+                    <td class="line">
+                        <hr>
+                    </td>
+                    <td class="middle_radio"><input type="radio" id="question_9" name="question_9" value="どちらでもない"
+                            required></td>
+                    <td class="line">
+                        <hr>
+                    </td>
+                    <td class="middle_radio"><input type="radio" id="question_9" name="question_9" value="少しそう思う"
+                            required></td>
+                    <td class="line">
+                        <hr>
+                    </td>
+                    <td class="middle_radio"><input type="radio" id="question_9" name="question_9" value="まあまあそう思う"
+                            required></td>
+                    <td class="line">
+                        <hr>
+                    </td>
+                    <td class="right_radio"><input type="radio" id="question_9" name="question_9" value="強くそう思う"
+                            required></td>
+                </div>
+            </tr>
+        </table><br><br><br>
+
+        <div style="font-size: 20px;" class="form_label">10. 発想力に欠けた、平凡な人間だと思う</div>
+        <br>
+        <table class="questionnaire" border="0" align="center" width="1150" margin="100">
+            <tr style="font-size:12px" ; align="center">
+            <tr style="font-size:14px" ; align="center">
+                <td width="150">全く違うと思う</td>
+                <td width="5px"></td>
+                <td width="150">おおよそ違うと思う</td>
+                <td width="5px"></td>
+                <td width="150">少し違うと思う</td>
+                <td width="5px"></td>
+                <td width="150">どちらでもない</td>
+                <td width="5px"></td>
+                <td width="150">少しそう思う</td>
+                <td width="5px"></td>
+                <td width="150">まあまあそう思う</td>
+                <td width="5px"></td>
+                <td width="150">強くそう思う</td>
+            </tr>
+            <tr align="center">
+                <div class="radio">
+                    <td class="left_radio"><input type="radio" id="question_10" name="question_10" value="全く違うと思う"
+                            required></td>
+                    <td class="line">
+                        <hr>
+                    </td>
+                    <td class="middle_radio"><input type="radio" id="question_10" name="question_10" value="おおよそ違うと思う"
+                            required>
+                    </td>
+                    <td class="line">
+                        <hr>
+                    </td>
+                    <td class="middle_radio"><input type="radio" id="question_10" name="question_10" value="少し違うと思う"
+                            required></td>
+                    <td class="line">
+                        <hr>
+                    </td>
+                    <td class="middle_radio"><input type="radio" id="question_10" name="question_10" value="どちらでもない"
+                            required></td>
+                    <td class="line">
+                        <hr>
+                    </td>
+                    <td class="middle_radio"><input type="radio" id="question_10" name="question_10" value="少しそう思う"
+                            required></td>
+                    <td class="line">
+                        <hr>
+                    </td>
+                    <td class="middle_radio"><input type="radio" id="question_10" name="question_10" value="まあまあそう思う"
+                            required></td>
+                    <td class="line">
+                        <hr>
+                    </td>
+                    <td class="right_radio"><input type="radio" id="question_10" name="question_10" value="強くそう思う"
+                            required></td>
+                </div>
+            </tr>
+        </table><br><br>
+        <div><button type="submit" id="submit" class="form-btn">この内容で回答する</button></div><br><br>
+
+    </form>
+
+
+
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"></script>
+    <script>
+        let elements = document.getElementsByName("position");
+        let other_text = document.getElementsByName("position.other_option_response")
+
+        function changeDisabled() {
+            if (elements.item(4).checked) {
+                other_text.item(0).disabled = false;
+                other_text.item(0).setAttribute("required", "")
+            } else {
+                other_text.item(0).removeAttribute("required")
+                other_text.item(0).disabled = true;
+            }
+        }
+        window.onload = changeDisabled;
+
+        let submitted = false;
+
+        document.getElementById('surveyForm').addEventListener('submit', function (event) {
+            //ラジオボタンのところのvalueの取得
+            department_elements = document.getElementsByName('department');
+            let department_len = department_elements.length;
+            let department_value = '';
+            for (let i = 0; i < department_len; i++) {
+                if (department_elements.item(i).checked) {
+                    department_value = department_elements.item(i).value;
+                }
+            }
+
+            position_elements = document.getElementsByName('position');
+            let position_len = position_elements.length;
+            let position_value = '';
+            for (let i = 0; i < position_len; i++) {
+                if (position_elements.item(i).checked) {
+                    position_value = position_elements.item(i).value;
+                }
+            }
+            if (position_elements.item(4).checked) {
+                position_value = other_text.item(0).value;
+            }
+
+            skill_1_elements = document.getElementsByName('skill_1');
+            skill_2_elements = document.getElementsByName('skill_2');
+            let skill_1_len = skill_1_elements.length;
+            let skill_1_value = '';
+            let skill_2_value = '';
+            for (let i = 0; i < skill_1_len; i++) {
+                if (skill_1_elements.item(i).checked) {
+                    skill_1_value = skill_1_elements.item(i).value;
+                }
+                if (skill_2_elements.item(i).checked) {
+                    skill_2_value = skill_2_elements.item(i).value;
+                }
+            }
+
+            question_1_elements = document.getElementsByName('question_1');
+            question_2_elements = document.getElementsByName('question_2');
+            question_3_elements = document.getElementsByName('question_3');
+            question_4_elements = document.getElementsByName('question_4');
+            question_5_elements = document.getElementsByName('question_5');
+            question_6_elements = document.getElementsByName('question_6');
+            question_7_elements = document.getElementsByName('question_7');
+            question_8_elements = document.getElementsByName('question_8');
+            question_9_elements = document.getElementsByName('question_9');
+            question_10_elements = document.getElementsByName('question_10');
+
+            let question_1_len = question_1_elements.length;
+            let question_1_value = '';
+            let question_2_value = '';
+            let question_3_value = '';
+            let question_4_value = '';
+            let question_5_value = '';
+            let question_6_value = '';
+            let question_7_value = '';
+            let question_8_value = '';
+            let question_9_value = '';
+            let question_10_value = '';
+
+            for (let i = 0; i < question_1_len; i++) {
+                if (question_1_elements.item(i).checked) {
+                    question_1_value = question_1_elements.item(i).value;
+                }
+                if (question_2_elements.item(i).checked) {
+                    question_2_value = question_2_elements.item(i).value;
+                }
+                if (question_3_elements.item(i).checked) {
+                    question_3_value = question_3_elements.item(i).value;
+                }
+                if (question_4_elements.item(i).checked) {
+                    question_4_value = question_4_elements.item(i).value;
+                }
+                if (question_5_elements.item(i).checked) {
+                    question_5_value = question_5_elements.item(i).value;
+                }
+                if (question_6_elements.item(i).checked) {
+                    question_6_value = question_6_elements.item(i).value;
+                }
+                if (question_7_elements.item(i).checked) {
+                    question_7_value = question_7_elements.item(i).value;
+                }
+                if (question_8_elements.item(i).checked) {
+                    question_8_value = question_8_elements.item(i).value;
+                }
+                if (question_9_elements.item(i).checked) {
+                    question_9_value = question_9_elements.item(i).value;
+                }
+                if (question_10_elements.item(i).checked) {
+                    question_10_value = question_10_elements.item(i).value;
+                }
+            }
+            event.preventDefault();
+            const formData = {
+                reader_id: document.getElementById('reader_id').value,
+                department: department_value,
+                department_other: document.getElementById('department_other').value,
+                doctor_year: document.getElementById('doctor_year').value,
+                facility_year: document.getElementById('facility_year').value,
+                images_num: document.getElementById('images_num').value,
+                position: position_value,
+                skill_1: skill_1_value,
+                skill_2: skill_2_value,
+                question_1: question_1_value,
+                question_2: question_2_value,
+                question_3: question_3_value,
+                question_4: question_4_value,
+                question_5: question_5_value,
+                question_6: question_6_value,
+                question_7: question_7_value,
+                question_8: question_8_value,
+                question_9: question_9_value,
+                question_10: question_10_value
+            };
+
+            fetch('/save-survey', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify(formData)
+            }).then(response => {
+                // リダイレクトする
+                window.location.href = '/thank-you';
+            }).catch(error => {
+                console.error('Error:', error);
+            });
+        });
+    </script>
+    <iframe name="hidden_iframe" id="hidden_iframe" style="display: none;"
+        onload="if(submitted){window.location='thanks.html';}"></iframe>
+</body>
+
+</html>
